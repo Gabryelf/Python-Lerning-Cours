@@ -1,45 +1,44 @@
-""" Приложение Task Manager
-    version 0.0.3
-    создает  i/o функционал для ввода заметки
+"""
+    Точка входа в приложение Task Manager
+    version 0.0.4
+    --- description ---
+    проложение может сохранять задачи,
+    редактировать, выдает список задач
+    и может удалять задачу.
 """
 
 is_running = True
-collection = ["создать версию 1", "попить кофе"]
-print("Приветствуем вас в приложении  TASK MANAGER")
+collection = ["task 1", "task 2"] # list
 
+print("Добро пожаловать!")
 while is_running:
-    print('1 - посмотреть задачи'
-          '\n2 - добавить задачу'
-          '\n3 - редактировать задачу'
-          '\n4 - удалить задачу'
-          '\n5 - выход')
-    choice_user = input("введите команду: ")
+    print("1 - посмотреть задачи \n"
+          "2 - добавить задачу \n"
+          "3 - редактирование задачи \n"
+          "4 - удаление задачи \n"
+          "5 - выход")
 
-    match choice_user:
-        case "1":
-            print("-" * 30)
-            for key, item in enumerate(collection):
-                print(key + 1, item)
-            print("-" * 30)
-            waite = input("Нажмите 'ENTER' для продолжения")
-        case "2":
-            task_name = input('введите название задачи: ')
-            collection.append(task_name)
-        case "3":
-            for key, item in enumerate(collection):
-                print(key + 1, item)
-            select_edit = int(input('введите номер задачи: '))
-            edit_name = input("новое имя задачи: ")
-            collection[select_edit - 1] = edit_name
-        case "4":
-            for key, item in enumerate(collection):
-                print(key + 1, item)
-            delete_edit = int(input('введите номер задачи: '))
-            collection.pop(delete_edit - 1)
-        case "5":
-            print("отключение...")
+    choice_user = input("Введите свой выбор")
+    match str(choice_user):
+        case '1':
+            for i, j in enumerate(collection):
+                print(i + 1, j)
+        case '2':
+            add_task = input("Введите имя задачи для добавления")
+            collection.append(add_task)
+        case '3':
+            for i, j in enumerate(collection):
+                print(i + 1, j)
+            select_task = int(input("Введите номер задачи"))
+            edit_task = input("Введите новое имя задачи для редактирования")
+            collection[select_task - 1] = edit_task
+        case '4':
+            for i, j in enumerate(collection):
+                print(i + 1, j)
+            delete_task = int(input("Введите номер задачи для удаления"))
+            collection.pop(delete_task - 1)
+        case '5':
             is_running = False
+            print("До свидания!")
         case _:
-            print('неверная команда')
-
-
+            print("Такого пункта нет!")
