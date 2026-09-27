@@ -7,7 +7,7 @@
     ~~~~~~~~~~~~~~~~~~~~~
     | version app 0.0.7 |
     ~~~~~~~~~~~~~~~~~~~~~
-    
+
     v(0.0.1)
     разработан цикл приложения - структурное программирование
 
@@ -27,7 +27,7 @@
     созданы методы для удаления, редактирования и создания задач - логика вынесена из цикла
 
     v(0.0.7)
-    основной цикл помещен в отдельный метод - def main 
+    основной цикл помещен в отдельный метод - def main
 
     v(0.0.8)
     реализован функционал добавления контента задачи - имя + содержание
@@ -53,7 +53,7 @@ def main():
             case "1":  # просмотр списка
                 show_collection(collection)
             case "2":  # добавление в список
-                create_task(collection)
+                create_task(collection, name_file)
             case "3":  # изменение элемента
                 edited_task(collection)
                 save_collection(collection, name_file)
@@ -105,14 +105,14 @@ def check_confirm(action: str):
 """содзание задач"""
 
 
-def create_task(task_list):
+def create_task(task_list, file):
     name_task = input("введите имя задачи")
     if len(name_task) > 0 and name_task not in task_list and name_task is not None:
         content_task = input("введите описание задачи")
         if content_task is not None and len(content_task) >= 1:
             full_task = f"{name_task} {content_task}"
             task_list.append(full_task)
-            save_collection(task_list, full_task)
+            save_collection(task_list, file_name=file)
             show_message(message=name_task, mess_action='добавлена')
 
 
